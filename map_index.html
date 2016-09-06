@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://api-maps.yandex.ru/2.0/?load=package.standard&mode=debug&lang=ru-RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(function () {
+
+        });
+        var myMap = new ymaps.Map("YMapsID", {
+        // Центр карты
+        center: [55.76, 37.64],
+        // Коэффициент масштабирования
+        zoom: 10,
+        // Тип карты
+        type: "yandex#satellite"
+    }
+);
+        myMap.panTo(
+    // Координаты нового центра карты
+    [55.753, 37.609], {
+        /* Опции перемещения:
+           разрешить уменьшать и затем увеличивать зум
+           карты при перемещении между точками
+        */
+        flying: true
+    }
+)
+    </script>
+</head>
+<body>
+    <div id="map" style="width: 600px; height: 400px"></div>
+</body>
+</html>

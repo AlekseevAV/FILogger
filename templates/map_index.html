@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Find Iphone Logger</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/bootstrap.min.css') }}">
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="{{ url_for ('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        var myMap, 
+            myPlacemark;
+
+        function init(){
+            var locations = JSON.parse({{ locations|tojson }});
+            myMap = new ymaps.Map ("map", {
+                center: [locations[locations.length - 1][7], locations[locations.length - 1][4]],
+                zoom: 10,
+                controls: ['default']
+            });
+            var all_locations = [];
+            for (var i in locations) {
+                all_locations.push([locations[i][7], locations[i][4]]);
+                myMap.geoObjects.add(new ymaps.Placemark([locations[i][7], locations[i][4]], {
+                    balloonContent: locations[i][5]
+                }, {
+                    preset: 'islands#circleDotIcon',
+                    iconColor: '#1faee9'
+                }));
+            }
+        var myPolyline = new ymaps.Polyline(all_locations, {
+            // Описываем свойства геообъекта.
+            // Содержимое балуна.
+            balloonContent: "Ломаная линия"
+        }, {
+            // Задаем опции геообъекта.
+            // Отключаем кнопку закрытия балуна.
+            balloonCloseButton: false,
+            // Цвет линии.
+            strokeColor: "#000000",
+            // Ширина линии.
+            strokeWidth: 4,
+            // Коэффициент прозрачности.
+            strokeOpacity: 0.5
+        });
+            myMap.geoObjects.add(myPolyline);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="conteiner">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="map" style="width: 100%; height: 50vw;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

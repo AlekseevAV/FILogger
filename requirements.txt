@@ -1,0 +1,15 @@
+bitstring==3.1.5
+certifi==2016.8.31
+click==6.6
+Flask==0.11.1
+itsdangerous==0.24
+Jinja2==2.8
+keyring==8.7
+keyrings.alt==1.1.1
+MarkupSafe==0.23
+pyicloud==0.9.1
+pytz==2016.6.1
+requests==2.11.1
+six==1.10.0
+tzlocal==1.2.2
+Werkzeug==0.11.11
